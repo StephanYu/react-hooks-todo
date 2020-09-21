@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import AppBar from "@material-ui/core/AppBar";
@@ -9,8 +9,13 @@ import TodoForm from "./TodoForm";
 import { v4 as uuidv4 } from "uuid";
 
 function TodoApp() {
-  const initialTodos = [{ id: 1, task: "Walk The Goldfish", completed: true }];
+  const initialTodos = JSON.parse(window.localStorage.getItem("todos") || "[]");
   const [todos, setTodos] = useState(initialTodos);
+
+  useEffect(() => {
+    window.localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+
   const addTodo = (newTodo) => {
     setTodos([...todos, { id: uuidv4(), task: newTodo, completed: false }]);
   };
@@ -30,6 +35,7 @@ function TodoApp() {
     );
     setTodos(updatedTodos);
   };
+
   return (
     <Paper
       style={{

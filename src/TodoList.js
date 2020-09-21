@@ -5,25 +5,27 @@ import Todo from "./Todo";
 import Divider from "@material-ui/core/Divider";
 
 function TodoList({ todos, removeTodo, toggleTodo, updateTodo }) {
-  return (
-    <Paper>
-      <List>
-        {todos.map((todo, id) => (
-          <React.Fragment key={id}>
-            <Todo
-              key={id}
-              id={todo.id}
-              task={todo.task}
-              completed={todo.completed}
-              removeTodo={removeTodo}
-              toggleTodo={toggleTodo}
-              updateTodo={updateTodo}
-            />
-            {id < todos.length - 1 && <Divider />}
-          </React.Fragment>
-        ))}
-      </List>
-    </Paper>
-  );
+  if (todos.length)
+    return (
+      <Paper>
+        <List>
+          {todos.map((todo, id) => (
+            <React.Fragment key={id}>
+              <Todo
+                key={id}
+                id={todo.id}
+                task={todo.task}
+                completed={todo.completed}
+                removeTodo={removeTodo}
+                toggleTodo={toggleTodo}
+                updateTodo={updateTodo}
+              />
+              {id < todos.length - 1 && <Divider />}
+            </React.Fragment>
+          ))}
+        </List>
+      </Paper>
+    );
+  return null;
 }
 export default TodoList;
