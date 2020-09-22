@@ -1,3 +1,7 @@
+## Project Description
+
+A simple todo application that makes use of React's own context API, hooks, and useReducer() function to replace Redux for state management.
+Components were styled using [Material-ui](https://material-ui.com/).
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
